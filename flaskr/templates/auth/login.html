@@ -8,10 +8,12 @@
     <title>공유 캘린더</title>
   </head>
   <body>
-    <h1>공유 캘린더</h1>
-    <p>그룹별로 캘린더를 만들어 일정을 관리할 수 있습니다.</p>
-    <a href={{ url_for("login") }}>로그인</a>
-    <br />
-    <a href={{ url_for("register") }}>회원가입</a>
+    <h1>공유 캘린더: 로그인</h1>
+    <p>
+      계정이 없다면 <a href={{ url_for("register") }}>회원가입</a>하세요.
+    </p>
+    <input type="text" />
+    <input type="password" />
+    <button>로그인</button>
   </body>
 </html>
