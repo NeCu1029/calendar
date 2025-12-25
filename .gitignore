@@ -1,9 +1,9 @@
 *.pyc
 __pycache__/
 .env
+instance/
 
 # these paths below has never used yet
-instance/
 .pytest_cache/
 .coverage
 htmlcov/
