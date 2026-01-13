@@ -6,12 +6,20 @@
     <meta name="description" content="공유 캘린더">
     <meta name="keywords" content="캘린더, 일정관리">
     <title>공유 캘린더</title>
+    <link rel="stylesheet" href="/static/css/style.css">
   </head>
-  <body>
-    <h1>공유 캘린더</h1>
-    <p>그룹별로 캘린더를 만들어 일정을 관리할 수 있습니다.</p>
-    <a href={{ url_for("login") }}>로그인</a>
-    <br />
-    <a href={{ url_for("register") }}>회원가입</a>
+  <body class="index-page">
+    <div class="card">
+      <h1>공유 캘린더</h1>
+      <p>
+        그룹별로 캘린더를 만들어
+        <br>
+        일정을 효율적으로 관리하세요.
+      </p>
+      <div class="button-group">
+        <a href="{{ url_for("login") }}" class="btn-primary">로그인</a>
+        <a href="{{ url_for("register") }}" class="btn-secondary">회원가입</a>
+      </div>
+    </div>
   </body>
 </html>
