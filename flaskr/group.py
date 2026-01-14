@@ -1,6 +1,6 @@
 from flask import abort, Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from .util import db
+from .util import db, make_code
 
 group_bp = Blueprint("group_bp", __name__)
 
@@ -9,6 +9,7 @@ class Group(db.Model):
     group_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=False, nullable=False)
     desc = db.Column(db.String(500), unique=False, nullable=True)
+    invite_code = db.Column(db.String(10), unique=True, nullable=False)
 
 
 class Whitelist(db.Model):
@@ -24,21 +25,27 @@ def group(group_no: int):
     if not whitelist:
         abort(403)
     g = Group.query.filter_by(group_id=group_no).first()
-    return render_template("group/group.html", name=g.name, desc=g.desc)  # type: ignore
+    return render_template(
+        "group/group.html",
+        name=g.name,  # type: ignore
+        desc=g.desc,  # type: ignore
+        invite_code=g.invite_code,  # type: ignore
+    )
 
 
 @group_bp.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
     if request.method == "POST":
-        name = request.form.get("name")
-        desc = request.form.get("desc")
         user_id = current_user.id
         if not user_id:
             flash("사용자를 찾을 수 없습니다.")
             return redirect(url_for("index"))
+        name = request.form.get("name")
+        desc = request.form.get("desc")
+        code = make_code(10)
 
-        group = Group(name=name, desc=desc)  # type: ignore
+        group = Group(name=name, desc=desc, invite_code=code)  # type: ignore
         db.session.add(group)
         db.session.flush()
         whitelist = Whitelist(group=group.group_id, user=user_id)  # type: ignore
