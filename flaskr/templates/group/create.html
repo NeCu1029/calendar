@@ -8,15 +8,16 @@
     <title>공유 캘린더</title>
   </head>
   <body>
-    <h1>공유 캘린더</h1>
-    <p>그룹별로 캘린더를 만들어 일정을 관리할 수 있습니다.</p>
-    {% if current_user.is_authenticated %}
-      <a href={{ url_for("group_bp.create") }}>그룹 생성</a>
+    <h1>공유 캘린더: 그룹 생성</h1>
+    <form method="post">
+      <label for="name">그룹 이름</label>
+      <input type="text" id="name"  name="name" required />
       <br />
-      <a href={{ url_for("user_bp.logout") }}>로그아웃</a>
-    {% else %}
-      <a href={{ url_for("user_bp.login") }}>로그인</a>
-    {% endif %}
+      <label for="desc">그룹 설명</label>
+      <input type="textarea" id="desc" name="desc" required>
+      <br />
+      <button type="submit">그룹 생성</button>
+    </form>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>

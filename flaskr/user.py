@@ -1,12 +1,8 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_bcrypt import Bcrypt
 from flask_login import login_user, login_required, logout_user, UserMixin
-from flask_sqlalchemy import SQLAlchemy
+from .util import bcrypt, db
 
 user_bp = Blueprint("user_bp", __name__)
-
-bcrypt = Bcrypt()
-db = SQLAlchemy()
 
 
 class User(db.Model, UserMixin):
