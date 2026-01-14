@@ -1,0 +1,12 @@
+*.pyc
+__pycache__/
+.env
+instance/
+.vscode/
+
+# these paths below has never used yet
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
