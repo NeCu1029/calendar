@@ -1,13 +1,11 @@
-.venv/
-
 *.pyc
 __pycache__/
-
+.env
 instance/
 
+# these paths below has never used yet
 .pytest_cache/
 .coverage
 htmlcov/
-
 dist/
 build/
