@@ -57,6 +57,29 @@ def create():
     return render_template("group/create.html")
 
 
+@group_bp.route("/join", methods=["GET", "POST"])
+@login_required
+def join():
+    if request.method == "POST":
+        user_id = current_user.id
+        if not user_id:
+            flash("사용자를 찾을 수 없습니다.")
+            return redirect(url_for("index"))
+        code = request.form.get("code")
+
+        group = Group.query.filter_by(invite_code=code).first()
+        if not group:
+            flash("그룹을 찾을 수 없습니다.")
+            return redirect(url_for("group_bp.join"))
+
+        whitelist = Whitelist(group=group.group_id, user=user_id)  # type: ignore
+        db.session.add(whitelist)
+        db.session.commit()
+        flash("그룹에 가입했습니다.")
+        return redirect(url_for("group_bp.group", group_no=group.group_id))
+    return render_template("group/join.html")
+
+
 @group_bp.route("/my")
 @login_required
 def my():
