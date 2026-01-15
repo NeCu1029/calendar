@@ -1,21 +1,8 @@
 from flask import abort, Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from .util import db, make_code
+from .util import db, Group, make_code, Whitelist
 
 group_bp = Blueprint("group_bp", __name__)
-
-
-class Group(db.Model):
-    group_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), unique=False, nullable=False)
-    desc = db.Column(db.String(500), unique=False, nullable=True)
-    invite_code = db.Column(db.String(10), unique=True, nullable=False)
-
-
-class Whitelist(db.Model):
-    no = db.Column(db.Integer, primary_key=True)
-    group = db.Column(db.Integer, unique=False, nullable=False)
-    user = db.Column(db.Integer, unique=False, nullable=False)
 
 
 @group_bp.route("/group/<int:group_no>")
