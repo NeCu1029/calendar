@@ -30,7 +30,11 @@ class Whitelist(db.Model):
 
 
 def make_code(length: int) -> str:
-    res = []
-    for _ in range(length):
-        res.append(chr(random.randint(0, 25) + 97))
-    return "".join(res)
+    while True:
+        lst = []
+        for _ in range(length):
+            lst.append(chr(random.randint(0, 25) + 97))
+        res = "".join(lst)
+        group = Group.query.filter_by(invite_code=res).first()
+        if not group:
+            return "".join(lst)
