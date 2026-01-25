@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template
 from flask_login import LoginManager
 from .group import group_bp
+from .sch import sch_bp
 from .user import User, user_bp
 from .util import bcrypt, db
 
@@ -16,8 +17,9 @@ with app.app_context():
 login_manager = LoginManager(app)
 login_manager.login_view = "user_bp.login"  # type: ignore
 
-app.register_blueprint(user_bp)
 app.register_blueprint(group_bp)
+app.register_blueprint(sch_bp)
+app.register_blueprint(user_bp)
 
 
 @login_manager.user_loader

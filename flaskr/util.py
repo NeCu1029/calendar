@@ -31,6 +31,7 @@ class Whitelist(db.Model):
 
 class Schedule(db.Model):
     no = db.Column(db.Integer, primary_key=True)
+    creator = db.Column(db.Integer, unique=False, nullable=False)
     group = db.Column(db.Integer, unique=False, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     desc = db.Column(db.String(500), unique=False, nullable=True)

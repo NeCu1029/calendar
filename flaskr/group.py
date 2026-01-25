@@ -14,6 +14,7 @@ def group(group_no: int):
     g = Group.query.filter_by(group_id=group_no).first()
     return render_template(
         "group/group.html",
+        no=g.group_id,  # type: ignore
         name=g.name,  # type: ignore
         desc=g.desc,  # type: ignore
         invite_code=g.invite_code,  # type: ignore
