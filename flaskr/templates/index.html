@@ -6,23 +6,21 @@
     <meta name="description" content="공유 캘린더">
     <meta name="keywords" content="캘린더, 일정관리">
     <title>공유 캘린더</title>
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/style.css") }}">
   </head>
-  <body>
-    <h1>공유 캘린더</h1>
-    <p>그룹별로 캘린더를 만들어 일정을 관리할 수 있습니다.</p>
-    {% if current_user.is_authenticated %}
-      <a href={{ url_for("group_bp.create") }}>그룹 생성</a>
-      <br />
-      <a href={{ url_for("user_bp.logout") }}>로그아웃</a>
-    {% else %}
-      <a href={{ url_for("user_bp.login") }}>로그인</a>
-    {% endif %}
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+  <body class="index-page">
+    <div class="card">
+      <h1>공유 캘린더</h1>
+      <p>
+        그룹별로 캘린더를 만들어
+        <br>
+        일정을 효율적으로 관리하세요.
+      </p>
+      <div class="button-group">
+        <a href="{{ url_for("user_bp.login") }}" class="btn-primary">로그인</a>
+        <a href="{{ url_for("user_bp.register") }}" class="btn-secondary">회원가입</a>
+      </div>
+    </div>
   </body>
 </html>
