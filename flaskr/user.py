@@ -1,15 +1,8 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import login_user, login_required, logout_user, UserMixin
-from .util import bcrypt, db
+from flask_login import login_user, login_required, logout_user
+from .util import bcrypt, db, User
 
 user_bp = Blueprint("user_bp", __name__)
-
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(150), nullable=False)
 
 
 @user_bp.route("/login", methods=["GET", "POST"])
