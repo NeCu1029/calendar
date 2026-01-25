@@ -29,6 +29,15 @@ class Whitelist(db.Model):
     user = db.Column(db.Integer, unique=False, nullable=False)
 
 
+class Schedule(db.Model):
+    no = db.Column(db.Integer, primary_key=True)
+    group = db.Column(db.Integer, unique=False, nullable=False)
+    name = db.Column(db.String(100), unique=False, nullable=False)
+    desc = db.Column(db.String(500), unique=False, nullable=True)
+    start_time = db.Column(db.DateTime, unique=False, nullable=False)
+    end_time = db.Column(db.DateTime, unique=False, nullable=False)
+
+
 def make_code(length: int) -> str:
     while True:
         lst = []

@@ -11,5 +11,12 @@
     <h1>{{ name }}</h1>
     <p>{{ desc }}</p>
     <p>초대 코드: {{ invite_code }}</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
   </body>
 </html>
