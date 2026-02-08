@@ -35,8 +35,8 @@ class Schedule(db.Model):
     group = db.Column(db.Integer, unique=False, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     desc = db.Column(db.String(500), unique=False, nullable=True)
-    start_time = db.Column(db.DateTime, unique=False, nullable=False)
-    end_time = db.Column(db.DateTime, unique=False, nullable=False)
+    start = db.Column(db.Date, unique=False, nullable=False)
+    end = db.Column(db.Date, unique=False, nullable=False)
 
 
 def make_code(length: int) -> str:

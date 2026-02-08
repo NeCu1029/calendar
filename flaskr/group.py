@@ -14,10 +14,10 @@ def group(group_no: int):
     g = Group.query.filter_by(group_id=group_no).first()
     return render_template(
         "group/group.html",
-        no=g.group_id,  # type: ignore
-        name=g.name,  # type: ignore
-        desc=g.desc,  # type: ignore
-        invite_code=g.invite_code,  # type: ignore
+        no=g.group_id,
+        name=g.name,
+        desc=g.desc,
+        invite_code=g.invite_code,
     )
 
 
@@ -33,10 +33,10 @@ def create():
         desc = request.form.get("desc")
         code = make_code(10)
 
-        group = Group(name=name, desc=desc, invite_code=code)  # type: ignore
+        group = Group(name=name, desc=desc, invite_code=code)
         db.session.add(group)
         db.session.flush()
-        whitelist = Whitelist(group=group.group_id, user=user_id)  # type: ignore
+        whitelist = Whitelist(group=group.group_id, user=user_id)
         db.session.add(whitelist)
 
         db.session.commit()
@@ -60,7 +60,7 @@ def join():
             flash("그룹을 찾을 수 없습니다.")
             return redirect(url_for("group_bp.join"))
 
-        whitelist = Whitelist(group=group.group_id, user=user_id)  # type: ignore
+        whitelist = Whitelist(group=group.group_id, user=user_id)
         db.session.add(whitelist)
         db.session.commit()
         flash("그룹에 가입했습니다.")
