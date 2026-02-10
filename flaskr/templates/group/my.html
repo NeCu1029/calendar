@@ -8,13 +8,34 @@
     <title>공유 캘린더</title>
   </head>
   <body>
-    <h1>공유 캘린더: 내 그룹</h1>
-    <ul>
-      {% for group in groups %}
-        <li>
-          <a href={{ url_for("group_bp.group", group_no=group.group_id) }}>{{ group.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+    <h1>공유 캘린더: 마이 페이지</h1>
+    <p>
+      내 그룹
+      {% if groups %}
+        <ul>
+          {% for group in groups %}
+            <li>
+              <a href={{ url_for("group_bp.group", group_no=group.group_id) }}>{{ group.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul>
+          <li>그룹이 없습니다.</li>
+        </ul>
+      {% endif %}
+    </p>
+    <p>
+      내 일정
+      {% if schs %}
+        <ul>
+          {% for sch in schs %}<li>{{ sch.name }}: {{ sch.start }} ~ {{ sch.end }}</li>{% endfor %}
+        </ul>
+      {% else %}
+        <ul>
+          <li>일정이 없습니다.</li>
+        </ul>
+      {% endif %}
+    </p>
   </body>
 </html>

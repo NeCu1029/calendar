@@ -51,13 +51,18 @@ def make_code(length: int) -> str:
 
 
 def users_group(user_id: int) -> list[int]:
-    """Return A List Of Group IDs In Which A User Is Participated"""
-    return Whitelist.query.with_entities(Whitelist.group).filter_by(user=user_id).all()
+    """Return A List Of Groups In Which A User Is Participated"""
+    return (
+        db.session.query(Group)
+        .join(Whitelist, Group.group_id == Whitelist.group)
+        .filter(Whitelist.user == user_id)
+        .all()
+    )
 
 
 def users_sch(user_id: int) -> list[int]:
-    """Return A List Of Schedule IDs Which A User Created"""
-    return Schedule.query.with_entities(Schedule.no).filter_by(creator=user_id).all()
+    """Return A List Of Schedules Which A User Created"""
+    return Schedule.query.filter_by(creator=user_id).all()
 
 
 def groups_sch(group_no: int) -> list[int]:

@@ -1,6 +1,6 @@
 from flask import abort, Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from .util import db, Group, groups_sch, make_code, Whitelist
+from .util import db, Group, groups_sch, make_code, users_group, users_sch, Whitelist
 
 group_bp = Blueprint("group_bp", __name__)
 
@@ -72,11 +72,8 @@ def join():
 @group_bp.route("/my")
 @login_required
 def my():
-    groups = (
-        db.session.query(Group)
-        .join(Whitelist, Group.group_id == Whitelist.group)
-        .filter(Whitelist.user == current_user.id)
-        .all()
+    return render_template(
+        "group/my.html",
+        groups=users_group(current_user.id),
+        schs=users_sch(current_user.id),
     )
-
-    return render_template("group/my.html", groups=groups)
