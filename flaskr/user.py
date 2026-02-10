@@ -32,7 +32,7 @@ def register():
         email = request.form.get("email")
 
         if not User.query.filter_by(username=request.form.get("username")).first():
-            user = User(username=username, password=password, email=email)  # type: ignore
+            user = User(username=username, password=password, email=email)
             db.session.add(user)
             db.session.commit()
             flash("정상적으로 회원가입 되었습니다.")

@@ -15,7 +15,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 login_manager = LoginManager(app)
-login_manager.login_view = "user_bp.login"  # type: ignore
+login_manager.login_view = "user_bp.login"
 
 app.register_blueprint(group_bp)
 app.register_blueprint(sch_bp)

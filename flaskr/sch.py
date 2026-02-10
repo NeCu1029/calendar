@@ -42,4 +42,4 @@ def add(group_no: int):
         return redirect(url_for("group_bp.group", group_no=group_no))
 
     group = Group.query.filter_by(group_id=group_no).first()
-    return render_template("add.html", group=group.name)  # type: ignore
+    return render_template("add.html", group=group.name)
