@@ -1,6 +1,6 @@
 from flask import abort, Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from .util import db, Group, make_code, Whitelist
+from .util import db, Group, groups_sch, make_code, Whitelist
 
 group_bp = Blueprint("group_bp", __name__)
 
@@ -18,6 +18,7 @@ def group(group_no: int):
         name=g.name,
         desc=g.desc,
         invite_code=g.invite_code,
+        schs=groups_sch(g.group_id),
     )
 
 

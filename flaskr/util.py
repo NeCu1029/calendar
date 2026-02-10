@@ -48,3 +48,18 @@ def make_code(length: int) -> str:
         group = Group.query.filter_by(invite_code=res).first()
         if not group:
             return "".join(lst)
+
+
+def users_group(user_id: int) -> list[int]:
+    """Return A List Of Group IDs In Which A User Is Participated"""
+    return Whitelist.query.with_entities(Whitelist.group).filter_by(user=user_id).all()
+
+
+def users_sch(user_id: int) -> list[int]:
+    """Return A List Of Schedule IDs Which A User Created"""
+    return Schedule.query.with_entities(Schedule.no).filter_by(creator=user_id).all()
+
+
+def groups_sch(group_no: int) -> list[int]:
+    """Return A List Of Schedules Which Belong to A Group"""
+    return Schedule.query.filter_by(group=group_no).all()
