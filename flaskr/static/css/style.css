@@ -8,10 +8,12 @@ form {
   width: 400px;
   min-height: auto;
 }
+
 h1 {
   font-size: 1.5rem;
   color: #5d5b54;
 }
+
 /* 입력창 스타일 */
 label {
   display: block;
@@ -46,6 +48,7 @@ button {
 button:hover {
   background-color: #b67335;
 }
+
 p {
   font-size: 0.9rem;
   color: #8e8c84;
@@ -57,6 +60,7 @@ a {
   text-decoration: none;
   transition: background 0.3s;
 }
+
 a:hover {
   color: #b67335;
 }
@@ -71,7 +75,7 @@ a:hover {
   text-align: center;
 }
 
-/* 3. 버튼 그룹 정렬 */
+/* 2. 버튼 그룹 정렬 */
 .button-group {
   display: flex;
   flex-direction: column;
@@ -79,7 +83,7 @@ a:hover {
   margin-top: 30px;
 }
 
-/* 4. 메인 전용 버튼 스타일 */
+/* 3. 메인 전용 버튼 스타일 */
 .btn-primary {
   display: block;
   padding: 14px;
@@ -92,6 +96,7 @@ a:hover {
 
 .btn-primary:hover {
   background-color: #b67335;
+  color: white;
   transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
 }
 
@@ -111,7 +116,9 @@ a:hover {
 
 body {
   background-color: #f8f5f1;
-  background-image: radial-gradient(#d4c4b5 1px, transparent 1.5px);
+  background-image:
+    linear-gradient(#e0dcd9 1px, transparent 1px),
+    linear-gradient(90deg, #e0dcd9 1px, transparent 1px);
   background-size: 40px 40px;
   display: flex;
   flex-direction: column;
@@ -120,17 +127,4 @@ body {
   height: 100vh;
   margin: 0;
   font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-}
-.index-page {
-  background-image: linear-gradient(#e0dcd9 1px, transparent 1px),
-    linear-gradient(90deg, #e0dcd9 1px, transparent 1px);
-  animation: drawGrid 2s ease-out forwards;
-}
-@keyframes drawGrid {
-  from {
-    background-size: 0px 0px;
-  }
-  to {
-    background-size: 200px 160px;
-  }
 }
