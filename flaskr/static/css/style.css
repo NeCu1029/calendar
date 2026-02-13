@@ -1,3 +1,18 @@
+body {
+  background-color: #f8f5f1;
+  background-image:
+    linear-gradient(#e0dcd9 1px, transparent 1px),
+    linear-gradient(90deg, #e0dcd9 1px, transparent 1px);
+  background-size: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
 /* 로그인 카드 박스 */
 form {
   background-color: #ffffff;
@@ -42,7 +57,6 @@ button {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 button:hover {
@@ -52,13 +66,11 @@ button:hover {
 p {
   font-size: 0.9rem;
   color: #8e8c84;
-  margin-bottom: 0;
 }
 
 a {
   color: #d4c4b5;
   text-decoration: none;
-  transition: background 0.3s;
 }
 
 a:hover {
@@ -69,6 +81,7 @@ a:hover {
 .card {
   background-color: #ffffff;
   padding: 50px 40px;
+  margin: 20px 0px;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* 조금 더 부드러운 그림자 */
   width: 400px;
@@ -80,7 +93,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 12px; /* 버튼 사이 간격 */
-  margin-top: 30px;
+  margin: 0;
 }
 
 /* 3. 메인 전용 버튼 스타일 */
@@ -91,7 +104,6 @@ a:hover {
   color: white;
   border-radius: 10px;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 .btn-primary:hover {
@@ -107,24 +119,8 @@ a:hover {
   border: 1px solid #e0dcd9;
   border-radius: 10px;
   font-size: 0.9rem;
-  transition: 0.3s;
 }
 
 .btn-secondary:hover {
   background-color: #fcfaf8;
-}
-
-body {
-  background-color: #f8f5f1;
-  background-image:
-    linear-gradient(#e0dcd9 1px, transparent 1px),
-    linear-gradient(90deg, #e0dcd9 1px, transparent 1px);
-  background-size: 40px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
