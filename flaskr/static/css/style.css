@@ -16,12 +16,12 @@ body {
 /* 로그인 카드 박스 */
 form {
   background-color: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  border: 4px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 50px 40px;
+  margin: 20px 0px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   width: 400px;
-  min-height: auto;
+  text-align: center;
 }
 
 h1 {
@@ -51,7 +51,7 @@ input {
 button {
   width: 100%;
   padding: 12px;
-  background-color: #d4c4b5;
+  background-color: #dbb99b;
   color: white;
   border: none;
   border-radius: 8px;
@@ -91,7 +91,7 @@ a:hover {
   padding: 50px 40px;
   margin: 20px 0px;
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* 조금 더 부드러운 그림자 */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   width: 400px;
   text-align: center;
 }
@@ -108,7 +108,7 @@ a:hover {
 .btn-primary {
   display: block;
   padding: 14px;
-  background-color: #d4c4b5;
+  background-color: #dbb99b;
   color: white;
   border-radius: 10px;
   font-weight: bold;
@@ -117,7 +117,6 @@ a:hover {
 .btn-primary:hover {
   background-color: #b67335;
   color: white;
-  transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
 }
 
 .btn-secondary {
@@ -131,4 +130,12 @@ a:hover {
 
 .btn-secondary:hover {
   background-color: #fcfaf8;
+  color: #8e8c84;
+}
+
+.msg-container {
+  position: fixed;
+  left: 50%;
+  bottom: 3rem;
+  transform: translateX(-50%);
 }

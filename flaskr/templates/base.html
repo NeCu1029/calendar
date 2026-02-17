@@ -14,12 +14,8 @@
   <body class="{% block align %}left{% endblock %}">
     <h1>공유 캘린더: {{ self.title() }}</h1>
     {% block content %}내용{% endblock %}
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+    <div class="msg-container"
+         data-msg='{{ get_flashed_messages() | tojson | safe }}'></div>
+    <script src="{{ url_for("static", filename="./js/script.js") }}"></script>
   </body>
 </html>
