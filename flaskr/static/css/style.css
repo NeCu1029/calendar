@@ -132,10 +132,3 @@ a:hover {
   background-color: #fcfaf8;
   color: #8e8c84;
 }
-
-.msg-container {
-  position: fixed;
-  left: 50%;
-  bottom: 3rem;
-  transform: translateX(-50%);
-}

@@ -10,12 +10,15 @@
     </title>
     <link rel="stylesheet"
           href="{{ url_for("static", filename="./css/style.css") }}">
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/flash-msg.css") }}">
   </head>
   <body class="{% block align %}left{% endblock %}">
     <h1>공유 캘린더: {{ self.title() }}</h1>
     {% block content %}내용{% endblock %}
     <div class="msg-container"
-         data-msg='{{ get_flashed_messages() | tojson | safe }}'></div>
+         data-msg='{{ get_flashed_messages() | tojson | safe }}'
+         data-close-btn-url="{{ url_for('static', filename='./images/close-btn.svg') }}"></div>
     <script src="{{ url_for("static", filename="./js/script.js") }}"></script>
   </body>
 </html>
