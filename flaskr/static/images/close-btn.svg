@@ -1,0 +1,6 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100px" height="100px" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+
+<line x1="0.1" y1="0.1" x2="0.9" y2="0.9" stroke-width="0.3" stroke="#777777"/>
+<line x1="0.9" y1="0.1" x2="0.1" y2="0.9" stroke-width="0.3" stroke="#777777"/>
+
+</svg>
