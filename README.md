@@ -1,6 +1,10 @@
 # 공유 캘린더
 
-## 필요한 라이브러리 (Python)
+## 사용한 라이브러리 (프론트엔드)
+
+- FullCalendar
+
+## 사용한 라이브러리 (백엔드)
 
 - flask
 - flask-bcrypt
