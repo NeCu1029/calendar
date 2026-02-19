@@ -3,11 +3,3 @@
 *.pyc
 __pycache__/
 instance/
-.vscode/
-
-# these paths below has never used yet
-.pytest_cache/
-.coverage
-htmlcov/
-dist/
-build/

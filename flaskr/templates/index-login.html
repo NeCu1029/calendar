@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}홈페이지{% endblock %}
+{% block align %}center{% endblock %}
+{% block content %}
+  <p>
+    그룹별로 캘린더를 만들어
+    <br>
+    일정을 효율적으로 관리하세요.
+  </p>
+  <div class="card">
+    <div class="button-group">
+      <a href="{{ url_for("group_bp.my") }}" class="btn-primary">마이 페이지</a>
+      <a href="{{ url_for("user_bp.logout") }}" class="btn-secondary">로그아웃</a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template
-from flask_login import LoginManager
+from flask_login import current_user, LoginManager
 from .group import group_bp
 from .sch import sch_bp
 from .user import User, user_bp
@@ -29,4 +29,6 @@ def load_user(user_id):
 
 @app.route("/")
 def index():
+    if current_user.is_authenticated:
+        return render_template("index-login.html")
     return render_template("index.html")
