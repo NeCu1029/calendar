@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'base/card.html' %}
 {% block title %}로그인{% endblock %}
-{% block align %}center{% endblock %}
 {% block content %}
   <p>
     계정이 없다면 <a href={{ url_for("user_bp.register") }}>회원가입</a>하세요.
