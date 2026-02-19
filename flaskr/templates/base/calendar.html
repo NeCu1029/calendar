@@ -1,5 +1,29 @@
-{% extends 'base/base.html' %}
-{% block type %}
-  <link rel="stylesheet"
-        href="{{ url_for("static", filename="./css/calendar.css") }}">
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="공유 캘린더">
+    <meta name="keywords" content="캘린더, 일정관리">
+    <title>공유 캘린더:
+      {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/style.css") }}">
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/calendar.css") }}">
+    <link rel="shortcut icon"
+          href="{{ url_for("static", filename="./images/favicon.ico") }}">
+  </head>
+  <body>
+    <h1>공유 캘린더: {{ self.title() }}</h1>
+    {% block content %}내용{% endblock %}
+    <div class="calendar"></div>
+    <div class="msg-container"
+         data-msg='{{ get_flashed_messages() | tojson | safe }}'
+         data-close-btn-url="{{ url_for("static", filename="./images/close-btn.svg") }}"></div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js"></script>
+    <script src="{{ url_for("static", filename="./js/script.js") }}"></script>
+    <script src="{{ url_for("static", filename="./js/calendar.js") }}"></script>
+  </body>
+</html>
