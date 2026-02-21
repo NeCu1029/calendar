@@ -4,7 +4,7 @@ from flask_login import current_user, LoginManager
 from .group import group_bp
 from .sch import sch_bp
 from .user import User, user_bp
-from .util import bcrypt, db
+from .util import api_bp, bcrypt, db
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -17,6 +17,7 @@ with app.app_context():
 login_manager = LoginManager(app)
 login_manager.login_view = "user_bp.login"
 
+app.register_blueprint(api_bp)
 app.register_blueprint(group_bp)
 app.register_blueprint(sch_bp)
 app.register_blueprint(user_bp)

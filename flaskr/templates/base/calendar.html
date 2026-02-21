@@ -24,6 +24,6 @@
          data-close-btn-url="{{ url_for("static", filename="./images/close-btn.svg") }}"></div>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js"></script>
     <script src="{{ url_for("static", filename="./js/script.js") }}"></script>
-    <script src="{{ url_for("static", filename="./js/calendar.js") }}"></script>
+    {% block script %}{% endblock %}
   </body>
 </html>

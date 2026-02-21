@@ -1,10 +1,12 @@
 # 잡다한 것들
 
 import random
+from flask import Blueprint, jsonify
 from flask_bcrypt import Bcrypt
-from flask_login import UserMixin
+from flask_login import current_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
+api_bp = Blueprint("api_bp", __name__, url_prefix="/api")
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
@@ -38,6 +40,17 @@ class Schedule(db.Model):
     start = db.Column(db.Date, unique=False, nullable=False)
     end = db.Column(db.Date, unique=False, nullable=False)
 
+    def to_dict(self):
+        return {
+            "no": self.no,
+            "creator": self.creator,
+            "group": self.group,
+            "title": self.name,
+            "desc": self.desc,
+            "start": self.start.isoformat(),
+            "end": self.end.isoformat(),
+        }
+
 
 def make_code(length: int) -> str:
     while True:
@@ -68,3 +81,20 @@ def users_sch(user_id: int) -> list[int]:
 def groups_sch(group_no: int) -> list[int]:
     """Return A List Of Schedules Which Belong to A Group"""
     return Schedule.query.filter_by(group=group_no).all()
+
+
+@api_bp.route("/get_user_sch")
+@login_required
+def get_user_sch():
+    user_id = current_user.id
+    if not user_id:
+        return jsonify([])
+    groups = (
+        db.session.query(Group)
+        .join(Whitelist, Group.group_id == Whitelist.group)
+        .filter(Whitelist.user == user_id)
+        .all()
+    )
+    group_ids = [g.group_id for g in groups]
+    res = Schedule.query.filter(Schedule.group.in_(group_ids)).all()
+    return jsonify([sch.to_dict() for sch in res])
