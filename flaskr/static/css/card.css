@@ -3,7 +3,6 @@ body {
     linear-gradient(#e0dcd9 1px, transparent 1px),
     linear-gradient(90deg, #e0dcd9 1px, transparent 1px);
   background-size: 40px 40px;
-  align-items: center;
 }
 
 form,
