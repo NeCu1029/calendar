@@ -3,7 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 50px;
   margin: 0;
   font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
