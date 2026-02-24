@@ -1,6 +1,7 @@
 # 잡다한 것들
 
 import random
+from datetime import timedelta
 from flask import Blueprint, jsonify
 from flask_bcrypt import Bcrypt
 from flask_login import current_user, login_required, UserMixin
@@ -40,7 +41,7 @@ class Schedule(db.Model):
     start = db.Column(db.Date, unique=False, nullable=False)
     end = db.Column(db.Date, unique=False, nullable=False)
 
-    def to_dict(self):
+    def to_dict(self, user_id: int):
         return {
             "no": self.no,
             "creator": self.creator,
@@ -48,7 +49,8 @@ class Schedule(db.Model):
             "title": self.name,
             "desc": self.desc,
             "start": self.start.isoformat(),
-            "end": self.end.isoformat(),
+            "end": (self.end + timedelta(days=1)).isoformat(),
+            "by_me": self.creator == user_id,
         }
 
 
@@ -97,4 +99,4 @@ def get_user_sch():
     )
     group_ids = [g.group_id for g in groups]
     res = Schedule.query.filter(Schedule.group.in_(group_ids)).all()
-    return jsonify([sch.to_dict() for sch in res])
+    return jsonify([sch.to_dict(user_id) for sch in res])
