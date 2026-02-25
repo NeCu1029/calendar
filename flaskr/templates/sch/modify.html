@@ -1,7 +1,7 @@
 {% extends 'base/card.html' %}
-{% block title %}일정 생성{% endblock %}
+{% block title %}일정 수정{% endblock %}
 {% block content %}
-  <h2>그룹: {{ group }}</h2>
+  <h2>일정: {{ name }}</h2>
   <form method="post">
     <label for="name">일정 이름</label>
     <input type="text" id="name" name="name" required />
@@ -15,6 +15,6 @@
     <label for="end">종료일</label>
     <input type="date" id="end" name="end" required />
     <br />
-    <button type="submit">그룹 생성</button>
+    <button type="submit">일정 수정</button>
   </form>
 {% endblock %}

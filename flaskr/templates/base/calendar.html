@@ -27,7 +27,8 @@
         <p class="event-desc">이벤트 설명:</p>
         <p class="event-start">시작일:</p>
         <p class="event-end">종료일:</p>
-        <a class="hidden">일정 수정하기</a>
+        <a class="hidden"
+           data-base-url="{{ url_for("sch_bp.modify", sch_no=0) }}">일정 수정하기</a>
       </aside>
     </main>
     <div class="msg-container"

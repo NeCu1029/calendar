@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     events: "/api/get_user_sch",
     eventClick: function (info) {
       let endForShow = info.event.end;
+      let baseLink = modifyLink.dataset.baseUrl;
       endForShow.setDate(endForShow.getDate() - 1);
       eventTitle.innerText = info.event.title;
       if (info.event.extendedProps.desc === "")
@@ -19,8 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
       eventStart.innerText = "시작일: " + info.event.start.toLocaleDateString();
       eventEnd.innerText = "종료일: " + endForShow.toLocaleDateString();
 
-      if (info.event.extendedProps.by_me) modifyLink.classList.remove("hidden");
-      else modifyLink.classList.add("hidden");
+      if (info.event.extendedProps.by_me) {
+        modifyLink.setAttribute(
+          "href",
+          baseLink.replace("/0", "/" + info.event.extendedProps.no),
+        );
+        modifyLink.classList.remove("hidden");
+      } else modifyLink.classList.add("hidden");
     },
   });
   fc.render();
