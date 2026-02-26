@@ -100,3 +100,11 @@ def get_user_sch():
     group_ids = [g.group_id for g in groups]
     res = Schedule.query.filter(Schedule.group.in_(group_ids)).all()
     return jsonify([sch.to_dict(user_id) for sch in res])
+
+
+@api_bp.route("/get_group_sch/<int:group_no>")
+@login_required
+def get_group_sch(group_no: int):
+    user_id = current_user.id
+    res = Schedule.query.filter_by(group=group_no).all()
+    return jsonify([sch.to_dict(user_id) for sch in res])

@@ -72,7 +72,6 @@ def join():
 @group_bp.route("/my")
 @login_required
 def my():
-    flash("테스트 플래시")
     return render_template(
         "group/my.html",
         groups=users_group(current_user.id),
