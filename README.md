@@ -9,6 +9,7 @@
 - flask
 - flask-bcrypt
 - flask-login
+- flash-migrate
 - flask-sqlalchemy
 - python-dotenv
 

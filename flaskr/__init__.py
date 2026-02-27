@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template
 from flask_login import current_user, LoginManager
+from flask_migrate import Migrate
 from .group import group_bp
 from .sch import sch_bp
 from .user import User, user_bp
@@ -16,6 +17,8 @@ with app.app_context():
     db.create_all()
 login_manager = LoginManager(app)
 login_manager.login_view = "user_bp.login"
+migrate = Migrate()
+migrate.init_app(app, db)
 
 app.register_blueprint(api_bp)
 app.register_blueprint(group_bp)

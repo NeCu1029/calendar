@@ -40,6 +40,9 @@ class Schedule(db.Model):
     desc = db.Column(db.String(500), unique=False, nullable=True)
     start = db.Column(db.Date, unique=False, nullable=False)
     end = db.Column(db.Date, unique=False, nullable=False)
+    color = db.Column(
+        db.String(7), unique=False, nullable=False, server_default="#1f6bcf"
+    )
 
     def to_dict(self, user_id: int):
         return {
@@ -50,6 +53,7 @@ class Schedule(db.Model):
             "desc": self.desc,
             "start": self.start.isoformat(),
             "end": (self.end + timedelta(days=1)).isoformat(),
+            "color": self.color,
             "by_me": self.creator == user_id,
         }
 
