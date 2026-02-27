@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const eventStart = document.querySelector(".event-start");
   const eventEnd = document.querySelector(".event-end");
   const modifyLink = document.querySelector("aside a");
+  const baseLink = modifyLink.dataset.baseUrl;
 
   const fc = new FullCalendar.Calendar(calendar, {
     initialView: "dayGridMonth",
     events: "/api/get_user_sch",
     eventClick: function (info) {
       let endForShow = info.event.end;
-      let baseLink = modifyLink.dataset.baseUrl;
       endForShow.setDate(endForShow.getDate() - 1);
       eventTitle.innerText = info.event.title;
       if (info.event.extendedProps.desc === "")
