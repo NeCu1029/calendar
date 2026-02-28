@@ -55,6 +55,7 @@ class Schedule(db.Model):
             "end": (self.end + timedelta(days=1)).isoformat(),
             "color": self.color,
             "by_me": self.creator == user_id,
+            "textColor": "black" if is_bright(self.color) else "white",
         }
 
 
@@ -87,6 +88,13 @@ def users_sch(user_id: int) -> list[int]:
 def groups_sch(group_no: int) -> list[int]:
     """Return A List Of Schedules Which Belong to A Group"""
     return Schedule.query.filter_by(group=group_no).all()
+
+
+def is_bright(hex_str: str) -> float:
+    r = int(hex_str[1:3], 16)
+    g = int(hex_str[3:5], 16)
+    b = int(hex_str[5:7], 16)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 120
 
 
 @api_bp.route("/get_user_sch")

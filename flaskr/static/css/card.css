@@ -82,3 +82,7 @@ button:hover {
   background-color: #fcfaf8;
   color: #8e8c84;
 }
+
+#color {
+  height: 4rem;
+}

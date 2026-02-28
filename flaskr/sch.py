@@ -22,9 +22,16 @@ def add(group_no: int):
         if start > end:
             flash("종료일은 시작일 이전일 수 없습니다.")
             return redirect(url_for("sch_bp.add", group_no=group_no))
+        color = request.form.get("color")
 
         sch = Schedule(
-            creator=user_id, group=group_no, name=name, desc=desc, start=start, end=end
+            creator=user_id,
+            group=group_no,
+            name=name,
+            desc=desc,
+            start=start,
+            end=end,
+            color=color,
         )
         db.session.add(sch)
         db.session.commit()
@@ -54,11 +61,13 @@ def modify(sch_no: int):
         if start > end:
             flash("종료일은 시작일 이전일 수 없습니다.")
             return redirect(url_for("sch_bp.modify", sch_no=sch_no))
+        color = request.form.get("color")
 
         sch.name = name
         sch.desc = desc
         sch.start = start
         sch.end = end
+        sch.color = color
         db.session.commit()
         flash("일정이 수정되었습니다.")
         return redirect(url_for("group_bp.group", group_no=sch.group))
