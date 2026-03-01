@@ -1,10 +1,13 @@
 # 잡다한 것들
 
 import random
+from datetime import timedelta
+from flask import Blueprint, jsonify
 from flask_bcrypt import Bcrypt
-from flask_login import UserMixin
+from flask_login import current_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
+api_bp = Blueprint("api_bp", __name__, url_prefix="/api")
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
@@ -37,6 +40,23 @@ class Schedule(db.Model):
     desc = db.Column(db.String(500), unique=False, nullable=True)
     start = db.Column(db.Date, unique=False, nullable=False)
     end = db.Column(db.Date, unique=False, nullable=False)
+    color = db.Column(
+        db.String(7), unique=False, nullable=False, server_default="#1f6bcf"
+    )
+
+    def to_dict(self, user_id: int):
+        return {
+            "no": self.no,
+            "creator": self.creator,
+            "group": self.group,
+            "title": self.name,
+            "desc": self.desc,
+            "start": self.start.isoformat(),
+            "end": (self.end + timedelta(days=1)).isoformat(),
+            "color": self.color,
+            "by_me": self.creator == user_id,
+            "textColor": "black" if is_bright(self.color) else "white",
+        }
 
 
 def make_code(length: int) -> str:
@@ -68,3 +88,35 @@ def users_sch(user_id: int) -> list[int]:
 def groups_sch(group_no: int) -> list[int]:
     """Return A List Of Schedules Which Belong to A Group"""
     return Schedule.query.filter_by(group=group_no).all()
+
+
+def is_bright(hex_str: str) -> float:
+    r = int(hex_str[1:3], 16)
+    g = int(hex_str[3:5], 16)
+    b = int(hex_str[5:7], 16)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 120
+
+
+@api_bp.route("/get_user_sch")
+@login_required
+def get_user_sch():
+    user_id = current_user.id
+    if not user_id:
+        return jsonify([])
+    groups = (
+        db.session.query(Group)
+        .join(Whitelist, Group.group_id == Whitelist.group)
+        .filter(Whitelist.user == user_id)
+        .all()
+    )
+    group_ids = [g.group_id for g in groups]
+    res = Schedule.query.filter(Schedule.group.in_(group_ids)).all()
+    return jsonify([sch.to_dict(user_id) for sch in res])
+
+
+@api_bp.route("/get_group_sch/<int:group_no>")
+@login_required
+def get_group_sch(group_no: int):
+    user_id = current_user.id
+    res = Schedule.query.filter_by(group=group_no).all()
+    return jsonify([sch.to_dict(user_id) for sch in res])

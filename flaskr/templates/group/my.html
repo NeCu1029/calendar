@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base/calendar.html' %}
 {% block title %}마이 페이지{% endblock %}
 {% block content %}
+  <h2>내 그룹</h2>
   <p>
-    내 그룹
     {% if groups %}
       <ul>
         {% for group in groups %}
@@ -12,21 +12,13 @@
         {% endfor %}
       </ul>
     {% else %}
-      <ul>
-        <li>그룹이 없습니다.</li>
-      </ul>
+      그룹이 없습니다.
     {% endif %}
   </p>
   <p>
-    내 일정
-    {% if schs %}
-      <ul>
-        {% for sch in schs %}<li>{{ sch.name }}: {{ sch.start }} ~ {{ sch.end }}</li>{% endfor %}
-      </ul>
-    {% else %}
-      <ul>
-        <li>일정이 없습니다.</li>
-      </ul>
-    {% endif %}
+    <a href={{ url_for("group_bp.create") }}>그룹 생성</a>
+    <br />
+    일정은 각 그룹 페이지에서 생성 가능합니다.
   </p>
 {% endblock %}
+{% block script %}<script src="{{ url_for("static", filename="./js/my.js") }}"></script>{% endblock %}

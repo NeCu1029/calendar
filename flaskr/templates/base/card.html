@@ -11,12 +11,12 @@
     <link rel="stylesheet"
           href="{{ url_for("static", filename="./css/style.css") }}">
     <link rel="stylesheet"
-          href="{{ url_for("static", filename="./css/flash-msg.css") }}">
+          href="{{ url_for("static", filename="./css/card.css") }}">
     <link rel="shortcut icon"
           href="{{ url_for("static", filename="./images/favicon.ico") }}">
   </head>
-  <body class="{% block align %}left{% endblock %}">
-    <h1>공유 캘린더: {{ self.title() }}</h1>
+  <body>
+    <h1>{{ self.title() }}</h1>
     {% block content %}내용{% endblock %}
     <div class="msg-container"
          data-msg='{{ get_flashed_messages() | tojson | safe }}'

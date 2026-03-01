@@ -1,6 +1,6 @@
-const container = document.querySelector(".msg-container");
-
 document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".msg-container");
+
   if (container.dataset.msg !== "[]") {
     const msgs = JSON.parse(container.dataset.msg);
     msgs.forEach((msg) => {

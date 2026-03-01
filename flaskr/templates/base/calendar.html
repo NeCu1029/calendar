@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="공유 캘린더">
+    <meta name="keywords" content="캘린더, 일정관리">
+    <title>공유 캘린더:
+      {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/style.css") }}">
+    <link rel="stylesheet"
+          href="{{ url_for("static", filename="./css/calendar.css") }}">
+    <link rel="shortcut icon"
+          href="{{ url_for("static", filename="./images/favicon.ico") }}">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>{{ self.title() }}</h1>
+        {% block content %}내용{% endblock %}
+      </header>
+      <div class="calendar"></div>
+      <aside>
+        <h2 class="event-title">이벤트 정보</h2>
+        <p class="event-desc">이벤트 설명:</p>
+        <p class="event-start">시작일:</p>
+        <p class="event-end">종료일:</p>
+        <a class="hidden"
+           data-base-url="{{ url_for("sch_bp.modify", sch_no=0) }}">일정 수정하기</a>
+      </aside>
+    </main>
+    <div class="msg-container"
+         data-msg='{{ get_flashed_messages() | tojson | safe }}'
+         data-close-btn-url="{{ url_for("static", filename="./images/close-btn.svg") }}"></div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js"></script>
+    <script src="{{ url_for("static", filename="./js/script.js") }}"></script>
+    {% block script %}{% endblock %}
+  </body>
+</html>

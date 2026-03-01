@@ -1,10 +1,15 @@
 # 공유 캘린더
 
-## 필요한 라이브러리 (Python)
+## 사용한 라이브러리 (프론트엔드)
+
+- FullCalendar
+
+## 사용한 라이브러리 (백엔드)
 
 - flask
 - flask-bcrypt
 - flask-login
+- flash-migrate
 - flask-sqlalchemy
 - python-dotenv
 
@@ -12,6 +17,7 @@
 
 1. cmd에서 루트 디렉토리로 이동
 2. `py -m flask run` 실행
+3. localhost:5000 접속
 
 ## URL별 기능
 
@@ -22,6 +28,7 @@
 - /create: 그룹 생성
 - /group/1: 1번 그룹 (다른 수도 가능)
 - /add/1: 1번 그룹에서 일정 생성 (다른 수도 가능)
+- /modify/1: 1번 일정 수정 (다른 수도 가능)
 - /my: 마이 페이지 (소속된 그룹 보여줌)
 
 ## 기여자 목록
